@@ -1,0 +1,24 @@
+extends layout
+
+block content
+    h1(class="main-header") #{title}
+    hr(style='width:100%;')
+    if order
+        if order.status=='Delivering'
+            h2 Status: 
+                span.blue #{order.status}
+        else if order.status=='Complete'
+            h2 Status: 
+                span.green #{order.status}
+        else if order.status=='Cancelled'
+            h2 Status: 
+                span.red #{order.status}
+        else if order.status=='Processing'
+            h2 Status: 
+                span.orange #{order.status}
+        h2 Ordering Company: #{order.company}
+        h2 Item Ordered: #{order.order[0].item.name}
+        form(action=`/order/${order._id}/delete` method='GET')
+                input(type='submit' value='Delete Order')
+    else
+        h2 Order not found

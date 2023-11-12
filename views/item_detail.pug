@@ -1,0 +1,24 @@
+extends layout
+
+block content
+    h1(class="main-header") #{title}
+    hr(style='width:100%;')
+    if item
+        h2 Item Name: #{item.name} (ID: #{item._id})
+        h2 Item Description: #{item.description}
+        h2 Item Category: #{item.category.name}
+        h2 Item Inventory Count: #{item.in_stock_amount}
+        
+        if orders
+            h2 Item is in the following order(s):
+            each order in orders
+                h3 - 
+                    a(href=`/order/${order._id}`) #{order._id}
+                    |  (Status: #{order.status})
+            button(disabled='true' style='width:30%;' title='To delete category, delete all items under the category') Delete Item
+        else
+            form(action=`/item/${item.name}/delete` method='GET')
+                input(type='submit' value='Delete Item')
+    
+    else
+        h2 Item not found

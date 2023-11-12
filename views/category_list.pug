@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    h1(class="main-header") #{title}
+    hr(style="width:100%;")
+    div(class="categories-container")
+        ul
+            each category in categories_list
+                li
+                    a(href=`/category/${category.name}`)
+                        h3  #{category.name}

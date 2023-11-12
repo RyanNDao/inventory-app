@@ -1,0 +1,16 @@
+extends layout 
+
+include errors_form
+
+block content
+    h1(class='main-header') #{title}
+    hr(style='width:100%;')
+
+    form(class='form-container' method='POST' action='')
+        label(for='category_name') Category Name:
+        input(type='text' required=true name='category_name')
+        label(for='category_description') Category Description:
+        textarea(type='textarea' required=true rows='5' name='category_description')
+        button(type='submit') Submit
+
+    +errors_form

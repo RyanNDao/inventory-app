@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    h1(class="main-header") #{title}
+    hr(style="width:100%;")
+    div(class="items-container")
+        each item in items_list
+            div(class="page-box")
+                h3 
+                    a(href=`/item/${item.name}`) #{item.name}
+                div(class="inner-page-box")
+                    p #[strong Item Description:] #{item.description}
+                    a(href=`/category/${item.category._id}`)
+                    | #[strong Item Category:] #{item.category.name}
+                    p #[strong Item Inventory Count:] #{item.in_stock_amount}

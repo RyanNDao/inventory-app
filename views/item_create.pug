@@ -1,0 +1,21 @@
+extends layout
+
+include errors_form
+
+block content
+    h1(class="main-header") #{title}
+    hr(style="width:100%;")
+    form(class='form-container' action='' method="post") 
+        label(for='item_name') #[strong Item Name]
+        input(type='text' placeholder='Book', name='item_name', required='true')
+        label(for='item_quantity') #[strong Item Quantity]
+        input(type='number' name='item_quantity' required='true' min='1' max='999')
+        label(for='item_category') #[strong Category]
+        select(type='select' placeholder='Select category' name='item_category')
+            each category in allCategories
+                option(value=category._id) #{category.name}
+        label(for='item_description') #[strong Item Description]
+        textarea(type='textarea' required='true' rows='5' name='item_description')
+        button(type='submit') Submit
+    +errors_form
+    

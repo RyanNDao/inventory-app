@@ -1,0 +1,5 @@
+mixin errors_form
+    if errors
+        ul
+        for error in errors
+            li!= error.msg

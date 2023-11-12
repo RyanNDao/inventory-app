@@ -1,0 +1,22 @@
+extends layout 
+
+include errors_form
+
+block content
+    h1(class='main-header') #{title}
+    hr(style='width:100%;')
+
+    form(class='form-container' method='POST' action='')
+        label(for='order_company') Company Name:
+        input(type='text' required='true' name='order_company')
+        label(for='order_item') Order Item:
+        select(name='order_item')
+            each item in items_list
+                option(value=item.name required='true') #{item.name} (ID: #{item._id})
+        label(for='order_status') Status:
+        select(name='order_status')
+            each status in status_list
+                option(value=status) #{status}
+        button(type='submit') Submit
+
+    +errors_form

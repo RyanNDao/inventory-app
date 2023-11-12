@@ -1,0 +1,29 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    div(class='sidebar-container')
+      div(class='sidebar')
+        h1
+          a(href='/') Home
+        hr(style='width:100%;')
+        ul
+          li 
+            a(href='/item/create') Create New Item
+          li 
+            a(href='/category/create') Create New Category
+          li 
+            a(href='/order/create') Create New Order
+        hr(style='width:100%;')
+        ul
+          li 
+            a(href='/items/') All Items
+          li 
+            a(href='/categories/') All Categories
+          li 
+            a(href='/orders/') All Orders
+    
+    div(class='main-content')
+      block content

@@ -1,0 +1,23 @@
+extends layout
+
+block content
+    h1(class="main-header") #{title}
+    hr(style='width:100%;')
+    if category
+        h2 Category Name: #{category.name} (ID: #{category._id})
+        h2 Category Description: #{category.description}
+        if items.length
+            h2 Items Under Category:
+            each item in items
+                ul
+                    li
+                        h3(style='margin: 5px 0px;') - 
+                            a(href=`/item/${item.name}`) #{item.name}
+            
+            button(disabled='true' style='width:30%;' title='To delete category, delete all items under the category') Delete
+        else
+            h2 Items Under Category: N/A
+            form(action=`/category/${category.name}/delete` method='GET')
+                button(style='width:30%;' type='submit') Delete
+    else
+        h2 Category not found

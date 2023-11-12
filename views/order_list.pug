@@ -1,0 +1,31 @@
+extends layout
+
+block content
+    h1(class="main-header") #{title}
+    hr(style="width:100%;")
+    div(class="orders-container")
+        each order in orders_list
+            div(class="page-box")
+                p(class="mini-header") #{order.company}
+                if order.status=='Delivering'
+                    h3.blue #{order.status}
+                else if order.status=='Complete'
+                    h3.green #{order.status}
+                else if order.status=='Cancelled'
+                    h3.red #{order.status}
+                else if order.status=='Processing'
+                    h3.orange #{order.status}
+                div(class="inner-page-box")
+                    p(class="small-padding-vertical") #[strong Order ID: ]
+                        span
+                            a(href=`/order/${order._id}`) #{order._id}
+                    p(class="small-padding-vertical") #[strong Item Name:] #{order.order[0].item.name}
+                    p(class="small-padding-vertical") #[strong Item Description:] #{order.order[0].item.description}
+                    p(class="small-padding-vertical") #[strong Amount Left In Stock:] #{order.order[0].item.in_stock_amount}
+                form(action=`/order/${order._id}/delete` method='GET' style='align-self: center;')
+                    input(type='submit' value='Delete')
+        
+
+
+            
+
